@@ -41,24 +41,6 @@ def load_data(data_file):
 
     return X, y
 
-
-# def tokenize(text):
-#     """
-#     Generates tokens from a given document
-    
-#     Arguments:
-#         text (str): Document to be tokenized
-    
-#     Returns:
-#         tokens: A list of tokens
-#     """
-#     tokens = nltk.word_tokenize(text)
-#     tokens = [w for w in tokens if bool(re.search(r"[^a-zA-Z0-9]", w)) != True]
-#     tokens = [WordNetLemmatizer().lemmatize(w, pos='v') for w in tokens if stopwords.words("english")]
-#     tokens = [PorterStemmer().stem(w) for w in tokens]
-#     return tokens
-
-
 def build_model():
     # text processing and model pipeline
     pipeline = Pipeline([
@@ -88,16 +70,12 @@ def train(X, y, model):
     model.fit(X_train, y_train)
     print("Model fit to training data!")
 
-
     return model
 
 def evaluate(X, y, model):
     # train test split
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # model = None
-    # with open("model-adaboost.pkl", "rb") as infile:
-    #     model = pickle.load(infile)
     y_pred = model.predict(X_test)
     for i in range(36):
         pred = [x[i] for x in y_pred]
