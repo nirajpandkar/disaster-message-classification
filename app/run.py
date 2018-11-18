@@ -10,10 +10,10 @@ from nltk.corpus import stopwords
 
 from flask import Flask
 from flask import render_template, request, jsonify
-from plotly.graph_objs import Bar
+from plotly.graph_objs import Bar, Scatter
 from sklearn.externals import joblib
 from sqlalchemy import create_engine
-
+import pickle 
 
 app = Flask(__name__)
 
@@ -32,6 +32,8 @@ df = pd.read_sql_table("messages", engine)
 # load model
 model = joblib.load("../models/model-adaboost.pkl")
 
+with open("text_cluster.pkl", "rb") as infile:
+    text_cluster = pickle.load(infile)
 
 # index webpage displays cool visuals and receives user input text for model
 @app.route('/')
@@ -87,6 +89,24 @@ def index():
                     'title': "Aid"
                 }
             }
+        },
+        {
+            'data': [
+                Scatter(
+                    x = [item[0] for item in list(text_cluster.values())],
+                    y = [item[1] for item in list(text_cluster.values())],
+                    mode = 'markers',
+                    text = [item for item in list(text_cluster.keys())],
+                    marker = dict(
+                                size = 10,
+                                color = 'rgba(152, 0, 0, .8)',
+                                line = dict(
+                                    width = 2,
+                                    color = 'rgb(0, 0, 0)'
+                            )
+    )
+                )
+            ],
         }
     ]
     
