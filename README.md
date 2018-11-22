@@ -2,6 +2,12 @@
 
 > An NLP pipeline to clean, preprocess and train a text classifier for disaster response management. 
 
+## Dataset
+
+After or during a disaster, there is usually a lot of communication - either direct or via social media. Disaster response organizations, at that time, have the least capacity to pull out and filter messages which are most important. Generally different organizations take care of different parts of the problem - water, blocked roads, shelter, food, medical supplies etc. 
+
+To remedy this situation, Figure 8 has provided us with pre-labelled tweets and text messages from real-life disasters. I've built a supervised learning model to classify these messages into given disaster categories and encapsulated everything into a Flask application.  
+
 ## File Structure
 
 ```
@@ -21,6 +27,14 @@
 |- train_classifier.py  # train the model
 |- model-adaboost.pkl  # saved model 
 ```
+
+## Webapp Screenshots
+
+* Classification Screenshot
+![alt text](Screenshots/d_classification.png "Classification screenshot")
+
+* Visualization Screenshot
+![alt text](Screenshots/d_visualizations.png "Visualization screenshot")
 
 ## Installation
 
