@@ -32,6 +32,7 @@ df = pd.read_sql_table("messages", engine)
 # load model
 model = joblib.load("models/model-adaboost.pkl")
 
+# load the aggregated down text representation. 
 with open("app/text_cluster.pkl", "rb") as infile:
     text_cluster = pickle.load(infile)
 
