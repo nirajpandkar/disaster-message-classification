@@ -2,6 +2,26 @@
 
 > An NLP pipeline to clean, preprocess and train a text classifier for disaster response management. 
 
+## File Structure
+
+```
+- app
+| - template
+| |- master.html  # main page of web app
+| |- go.html  # classification result page of web app
+|- run.py  # Flask file that runs app
+
+- data
+|- disaster_categories.csv  # data to process 
+|- disaster_messages.csv  # data to process
+|- process_data.py        # etl pipeline
+|- DisasterMessages.db   # database to save clean data to
+
+- models
+|- train_classifier.py  # train the model
+|- model-adaboost.pkl  # saved model 
+```
+
 ## Installation
 
 1. Install pip
@@ -45,5 +65,5 @@ python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl
 ### To run the webapp
 
 ```
-python run.py
+python app/run.py
 ```
