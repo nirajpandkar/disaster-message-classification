@@ -42,6 +42,14 @@ def load_data(data_file):
     return X, y
 
 def build_model():
+    """
+    Build a model pipeline.
+
+    Arguments:
+        None
+    Returns:
+        cv: A GridSearchCV object.
+    """
     # text processing and model pipeline
     pipeline = Pipeline([
         ('vect', TfidfVectorizer(lowercase=True, tokenizer=tokenize)),
@@ -63,6 +71,16 @@ def build_model():
 
 
 def train(X, y, model):
+    """
+    Train the model by splitting dataset into training and testing datasets. 
+
+    Arguments:
+        X: Features.
+        y: labels.
+        model: A sklearn pipeline or GridSearchCV object.
+    Returns:
+        model: A model fit to the training dataset. 
+    """
     # train test split
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     
@@ -73,6 +91,16 @@ def train(X, y, model):
     return model
 
 def evaluate(X, y, model):
+    """
+    Evaluate the model using metrics (Precision, Recall, F1 score)
+
+    Arguments:
+        X: Features.
+        y: labels.
+        model: A sklearn pipeline or GridSearchCV object.
+    Returns:
+        None.
+    """
     # train test split
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -84,6 +112,14 @@ def evaluate(X, y, model):
         print(classification_report(pred, true))
     
 def export_model(model):
+    """
+    Save the model to disk.
+
+    Arguments:
+        model: A model fit to training dataset. 
+    Returns:
+        None. 
+    """
     # Export model as a pickle file
     with open("model-adaboost.pkl", "wb") as outfile:
         pickle.dump(model, outfile)
