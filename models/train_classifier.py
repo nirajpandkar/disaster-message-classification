@@ -1,8 +1,12 @@
 # import packages
-import sys
+import sys, os.path
 import pickle
 import string
 import re
+
+tokenizer_dir = (os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
++ '/app/')
+sys.path.append(tokenizer_dir)
 
 # import libraries
 from sqlalchemy import create_engine
@@ -56,7 +60,7 @@ def build_model():
         ('clf', MultiOutputClassifier(AdaBoostClassifier(random_state=0)))
     ])
 
-    # define parameters for GridSearchCV
+    define parameters for GridSearchCV
     parameters = {
         'vect__ngram_range': ((1,1), (1,2)),
         'vect__use_idf': (True, False),
@@ -121,7 +125,7 @@ def export_model(model):
         None. 
     """
     # Export model as a pickle file
-    with open("model-adaboost.pkl", "wb") as outfile:
+    with open("models/model-adaboost.pkl", "wb") as outfile:
         pickle.dump(model, outfile)
 
 
