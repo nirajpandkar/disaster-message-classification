@@ -71,7 +71,7 @@ python data/process_data.py data/disaster_messages.csv data/disaster_categories.
 ### To run ML pipeline (Trains classifier and saves the model)
 
 ```bash
-python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl
+python models/train_classifier.py data/DisasterResponse.db
 ```
 
 **Note: Takes about 1 hour 40 minutes to finish training on a 6 core i5 8th gen CPU**
