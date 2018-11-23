@@ -125,7 +125,7 @@ def export_model(model):
         None. 
     """
     # Export model as a pickle file
-    with open("models/model-adaboost.pkl", "wb") as outfile:
+    with open("models/classifier.pkl", "wb") as outfile:
         pickle.dump(model, outfile)
 
 
